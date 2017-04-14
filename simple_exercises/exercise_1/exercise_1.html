@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>simple exercise 1</title>
+    <script>
+        function invertString(stringToInvert) {
+            return stringToInvert.split('').reverse().join('');
+        }
+
+        function putToOutput(particularFunction) {
+            var arg = document.form1.inputString.value;
+            o = document.getElementById('output');
+            o.innerHTML = particularFunction(arg);
+        }
+    </script>
+</head>
+<body>
+<form name="form1">
+    "Please input word of your choice and press 'Invert String' button"
+    <input type="text" name="inputString">
+    <input type="button" value="Invert String" onclick="putToOutput(invertString)">
+    <br>
+    <p>Inverted string: </p>
+    <p id="output"></p>
+</form>
+</body>
+</html>

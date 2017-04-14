@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>simple exercise 2</title>
+    <script>
+        function getCombinations(stringToInvert) {
+            var charArray = stringToInvert.split('');
+            var combinations = [];
+            while (charArray.length > 0) {
+                var primer = '';
+                for (var item in charArray) {
+                    primer = primer.concat(String(charArray[item]));
+                    combinations.push(primer);
+                };
+                charArray.shift();
+            }
+            return combinations;
+        }
+
+        function putToOutput(particularFunction) {
+            var arg = document.form1.inputString.value;
+            o = document.getElementById('output');
+            o.innerHTML = particularFunction(arg);
+        }
+    </script>
+
+</head>
+<body>
+<form name="form1">
+    "Please input word of your choice and press 'Get Combinations' button"
+    <input type="text" name="inputString">
+    <input type="button" value="Get Combinations" onclick="putToOutput(getCombinations)">
+    <br>
+    <p>Combination of string: </p>
+    <p id="output"></p>
+</form>
+</body>
+</html>

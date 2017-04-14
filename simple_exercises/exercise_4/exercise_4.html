@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>simple exercise 4</title>
+    <script>
+        function getTime() {
+            var today = new Date();
+            hh = addZero(today.getHours());
+            min = addZero(today.getMinutes());
+            sek = addZero(today.getSeconds());
+            var time = '"' + hh + ':' + min + ':' + sek + '", ';
+            return time;
+        }
+
+        //add zero to singe number value e.g. 5 sec are shown as 05
+        function addZero(d) {
+            if (d < 10) {
+                return ("0" + d);
+            }
+            else {
+                return (d);
+            }
+        }
+
+        function showTime() {
+            setTimeout("addToOutput(getTime)", 1000);
+           return setTimeout("showTime()", 1000);
+        }
+
+        function addToOutput(particularFunction) {
+            o = document.getElementById('output');
+            o.innerHTML += particularFunction();
+        }
+    </script>
+</head>
+<body onload="showTime()">
+<p>Outputs time every second</p>
+<p id="output"></p>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>simple exercise 3</title>
+    <script>
+        function getFirsUniqueChar(stringToInvert) {
+            var charArray = stringToInvert.split('');
+            var charObj = {};
+
+            for (var item in charArray) {
+                if (charObj.hasOwnProperty(charArray[item])) {
+                    charObj[charArray[item]] += 1;
+                } else {
+                    charObj[charArray[item]] = 1;
+                }
+            }
+            ;
+
+            for (var key in charObj) {
+                if (charObj[key] == 1) {
+                    return key;
+                }
+            }
+        }
+
+        function putToOutput(particularFunction) {
+            var arg = document.form1.inputString.value;
+            o = document.getElementById('output');
+            o.innerHTML = particularFunction(arg);
+        }
+    </script>
+
+</head>
+<body>
+<form name="form1">
+    "Please input word of your choice and press 'Get Unique Char' button"
+    <input type="text" name="inputString">
+    <input type="button" value="Get Unique Char" onclick="putToOutput(getFirsUniqueChar)">
+    <br>
+    <p>Unique character: </p>
+    <p id="output"></p>
+</form>
+</body>
+</html>

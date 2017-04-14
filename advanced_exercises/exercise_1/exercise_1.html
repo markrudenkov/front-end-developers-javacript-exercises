@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>simple exercise 5</title>
+    <script>
+        CurrentUser = [{
+            firstName: "tommy",
+            lastName: "MalCom",
+            email: "test@test.com",
+            id: 102
+        }];
+        var Person = {
+
+            setName: function (name) {
+                this.name = name+" ";
+                console.log(this);
+                return this;
+            },
+
+            go: function (place) {
+                this.place = 'goes to ' + place.toLowerCase()+" ";
+                return this;
+            },
+
+            buy: function (goods) {
+                this.goods = "to buy "+goods.toLowerCase();
+                return this.name+this.place+this.goods;
+
+            }
+
+        };
+
+
+        function putToOutput(particularFunction) {
+            var arg = document.form1.inputString.value;
+            o = document.getElementById('output');
+            o.innerHTML = particularFunction;
+        }
+    </script>
+</head>
+<body>
+<form name="form1">
+    "Please input array of integers eg. 1,2,3,4,5,6,7 and press 'Get Sum' button"
+    <input type="text" name="inputString">
+    <input type="button" value="Get array sum" onclick="putToOutput(Person.setName('John').go('Shop'))">
+    <br>
+    <p>Sum of array: </p>
+    <p id="output"></p>
+</form>
+</body>
+</html>
