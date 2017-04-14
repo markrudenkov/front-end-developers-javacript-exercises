@@ -4,34 +4,32 @@
     <meta charset="utf-8">
     <title>simple exercise 5</title>
     <script>
-        var Person = {
 
-            setName: function (name) {
-                this.name = name+" ";
-                console.log(this);
-                return this;
-            },
+    function name(personName) {
+        this.personName = personName + " ";
+        console.log(this);
+        return this;
+    }
 
-            go: function (place) {
-                this.place = 'goes to ' + place.toLowerCase()+" ";
-                return this;
-            },
+    function go(place) {
+        this.place = 'goes to ' + place.toLowerCase() + " ";
+        return this;
+    }
 
-            buy: function (goods) {
-                this.goods = "to buy "+goods.toLowerCase();
-                return this.name+this.place+this.goods;
-            }
-        };
+    function buy(goods) {
+        this.goods = "to buy " + goods.toLowerCase();
+        return this.personName + this.place + this.goods;
+    }
 
-        function putToOutput(particularFunction) {
-            o = document.getElementById('output');
-            o.innerHTML = particularFunction;
-        }
+    function putToOutput(particularFunction) {
+        o = document.getElementById('output');
+        o.innerHTML = particularFunction;
+    }
     </script>
 </head>
-<body onload="putToOutput(JSON.stringify(Person.setName('John').go('Shop').buy('Food')))">
-    <br>
-    <p>Sentence: </p>
-    <p id="output"></p>
+<body onload="putToOutput(name('John').go('Shop').buy('Food'))">
+<br>
+<p>Sentence: </p>
+<p id="output"></p>
 </body>
 </html>
