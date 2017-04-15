@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>simple exercise 5</title>
+
+</head>
+<body onload="putToOutput(
+    JSON.stringify(arrayConverter(objectsArray,mapedPets)))">
+<br>
+<p id="output"></p>
+</body>
+
+<script>
+    var mapedPets = {};
+    var objectsArray = [
+        {id: 1, name: "dog", parentId: null},
+        {id: 2, name: "Buddy", parentId: 1},
+        {id: 3, name: "Daisy", parentId: 1},
+        {id: 4, name: "cat", parentId: null},
+        {id: 5, name: "Smokey", parentId: 4},
+        {id: 6, name: "Oscar", parentId: 4}
+    ];
+
+    var ObjectMapper = {
+        childParentMap: {},
+
+        mapChildToParent: function (item, mapObj) {
+            this.childParentMap = {};
+            if (item.parentId != null) {
+                this.childParentMap[mapObj[item.parentId - 1].name] = [];
+                this.childParentMap[mapObj[item.parentId - 1].name].push(
+                    {"name": item.name});
+            }
+            return this;
+        },
+
+        addChildToOutputArray: function (outputArray) {
+            var parentKey = Object.keys(this.childParentMap)[0];
+            if (parentKey != undefined) {
+                var childName = this.childParentMap[parentKey];
+                if (outputArray.hasOwnProperty(parentKey)) {
+                    outputArray[parentKey].push(childName[0]);
+                } else {
+                    outputArray[parentKey] = childName;
+                }
+            }
+        }
+    }
+
+    function arrayConverter(arrayToConvert, output) {
+        arrayToConvert.forEach(function (item, key, mapObj) {
+            ObjectMapper.mapChildToParent(item, mapObj).addChildToOutputArray(output);
+        });
+        return output;
+    }
+
+    function putToOutput(particularFunction) {
+        o = document.getElementById('output');
+        o.innerHTML = particularFunction;
+    }
+</script>
+</html>

@@ -5,7 +5,7 @@
     <title>simple exercise 3</title>
     <script>
         function getFirsUniqueChar(stringToInvert) {
-            var charArray = stringToInvert.split('');
+            var charArray = stringToInvert.split("");
             var charObj = {};
 
             for (var item in charArray) {
@@ -15,7 +15,6 @@
                     charObj[charArray[item]] = 1;
                 }
             }
-            ;
 
             for (var key in charObj) {
                 if (charObj[key] == 1) {
@@ -26,7 +25,7 @@
 
         function putToOutput(particularFunction) {
             var arg = document.form1.inputString.value;
-            o = document.getElementById('output');
+            o = document.getElementById("output");
             o.innerHTML = particularFunction(arg);
         }
     </script>
