@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>advanced exercise 3</title>
+
+</head>
+<body>
+<button class="btn" id="createRectangle">create Rectangle</button>
+<br>
+<p id="output"></p>
+
+<canvas id="myCanvas" width="300" height="300"
+        style="border:1px solid #000000;">
+</canvas>
+
+</body>
+
+<script>
+    var rectangle = document.getElementById('createRectangle').addEventListener('click', function () {
+        createRectangle();
+
+    });
+
+    function createRectangle() {
+        var canvas = document.getElementById("myCanvas");
+        var ctx = canvas.getContext("2d");
+        var maxRectangleWidth = canvas.width;
+
+        ctx.fillStyle = "#FF0000";
+        RectangleCreator.getRandomRectangle().checkCollision().putRectangleToCanvas(ctx);
+    }
+
+    function isCollide(drawedRectangle, newRectangle) {
+        return !(
+            ((drawedRectangle.startY + drawedRectangle.height) < (newRectangle.startY)) ||
+            (drawedRectangle.startY > (newRectangle.startY + newRectangle.height)) ||
+            ((drawedRectangle.startX + drawedRectangle.width) < newRectangle.startX) ||
+            (drawedRectangle.startX > (newRectangle.startX + newRectangle.width))
+        );
+    }
+
+
+    var RectangleCreator = {
+        rectangles: [],
+        newRectangle: {},
+
+        getRandomRectangle: function () {
+            var canvas = document.getElementById("myCanvas");
+            var ctx = canvas.getContext("2d");
+
+            var height = parseInt(Math.random() * canvas.width * 0.2);
+            var width = parseInt(Math.random() * canvas.height * 0.2);
+            var startX = Math.abs(parseInt(Math.random() * canvas.width) - (width + 30));
+            var startY = Math.abs(parseInt(Math.random() * canvas.height) - (height + 30));
+            this.newRectangle = {
+                startX: startX,
+                startY: startY,
+                width: width,
+                height: height
+            }
+
+            return this;
+        },
+
+        checkCollision: function () {
+            var nRectangle = this.newRectangle;
+            var collision = false;
+            this.rectangles.forEach(function (item) {
+                if (isCollide(item, nRectangle)) {
+                    collision = true;
+                }
+            });
+            if (collision) {
+                this.newRectangle = {
+                    startX: 0,
+                    startY: 0,
+                    width: 0,
+                    height: 0
+                };
+            }
+            console.log(this.newRectangle);
+            this.rectangles.push(this.newRectangle)
+            return this
+        },
+
+        putRectangleToCanvas: function (ctx) {
+            ctx.fillRect(
+                this.newRectangle.startX,
+                this.newRectangle.startY,
+                this.newRectangle.width,
+                this.newRectangle.height)
+        }
+
+    }
+
+</script>
+</html>
