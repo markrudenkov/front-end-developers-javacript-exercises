@@ -3,30 +3,23 @@
 <head>
     <meta charset="utf-8">
     <title>advanced exercise 3</title>
-
 </head>
 <body>
 <button class="btn" id="createRectangle">create Rectangle</button>
 <br>
-<p id="output"></p>
-
 <canvas id="myCanvas" width="300" height="300"
         style="border:1px solid #000000;">
 </canvas>
-
 </body>
-
 <script>
     var rectangle = document.getElementById('createRectangle').addEventListener('click', function () {
         createRectangle();
-
     });
 
     function createRectangle() {
         var canvas = document.getElementById("myCanvas");
         var ctx = canvas.getContext("2d");
         var maxRectangleWidth = canvas.width;
-
         ctx.fillStyle = "#FF0000";
         RectangleCreator.getRandomRectangle().checkCollision().putRectangleToCanvas(ctx);
     }
@@ -40,7 +33,6 @@
         );
     }
 
-
     var RectangleCreator = {
         rectangles: [],
         newRectangle: {},
@@ -48,7 +40,6 @@
         getRandomRectangle: function () {
             var canvas = document.getElementById("myCanvas");
             var ctx = canvas.getContext("2d");
-
             var height = parseInt(Math.random() * canvas.width * 0.2);
             var width = parseInt(Math.random() * canvas.height * 0.2);
             var startX = Math.abs(parseInt(Math.random() * canvas.width) - (width + 30));
@@ -59,7 +50,6 @@
                 width: width,
                 height: height
             }
-
             return this;
         },
 
@@ -91,8 +81,6 @@
                 this.newRectangle.width,
                 this.newRectangle.height)
         }
-
     }
-
 </script>
 </html>
